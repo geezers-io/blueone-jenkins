@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins:lts
+    volumes:
+      - ${JENKINS_BACKUP_DIR}:/var/jenkins_home
+    environment:
+      - TZ=Asia/Seoul
+    ports:
+      - '80:8080'
+    env_file:
+      - .env
+    user: root
+
+  mariadb:
+    container_name: mariadb
+    image: mariadb:10.5
+    volumes:
+      - ./my.cnf:/etc/mysql/my.cnf
+      - ./my.cnf:/etc/my.cnf
+      # - ${MARIADB_BACKUP_DIR}:/var/lib/mysql
+    ports:
+      - 3307:3306
+    env_file:
+      - .env
