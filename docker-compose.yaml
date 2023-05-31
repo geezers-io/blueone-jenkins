@@ -3,7 +3,7 @@ version: '3'
 services:
   jenkins:
     container_name: jenkins
-    image: jenkins/jenkins:lts
+    image: jenkins/jenkins:jdk17
     volumes:
       - ${JENKINS_BACKUP_DIR}:/var/jenkins_home
     environment:
